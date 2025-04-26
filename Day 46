@@ -1,0 +1,53 @@
+mokeBeast = {}
+
+types = ["earth", "fire", "water", "air", "spirit"]
+
+def colour_change (type):
+  if type.lower() == "earth":
+    print('\033[0;33m', end='') #change to brown
+  elif type.lower() == "fire":
+    print('\033[0;31m', end='') #change to red
+  elif type.lower() == "air":
+    print('\033[0m', end='') #change to default
+  elif type.lower() == "water":
+    print('\033[1;34m', end='') #change to light blue
+  elif type.lower() == "spirit":
+    print('\033[0;35m', end='') #change to purple
+
+def pp():
+  for key, value in mokeBeast.items():
+    colour_change(value["type"])
+    print(key, end="|")
+    for subkey, subValue in value.items():
+      print(f"{subkey}", end=": ")
+      print(f"{subValue}", end="|")
+    print()
+
+print("MokeBeast")
+print()
+
+
+while True:
+  name = input("Name: ").strip().title()
+  while True:
+    type = input("type: ").strip().title()
+    if type.lower() not in types:
+      print("Beast types are: Earth, Fire, Water, Air, Spirit") 
+      continue
+    else:
+      break
+  sMove = input("Special Move: ").strip().title()
+  hp = input("Starting HP: ").strip().title()
+  mp = input("Starting MP: ").strip().title()
+  print('\033[0m')
+
+  mokeBeast[name] = {"type": type, "Special Move": sMove, "HP": hp, "MP": mp}
+
+  again = input("Again? (Y/N): ").strip().title()
+  if again == "Y":
+    print()
+    continue
+  else:
+    pp()
+    print()
+    break
